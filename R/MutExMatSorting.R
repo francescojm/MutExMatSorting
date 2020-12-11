@@ -1,21 +1,6 @@
-HeuristicMutExSorting<-function(mutPatterns){
+MExMaS.HeuristicMutExSorting<-function(mutPatterns){
 
   mutPatterns<-sign(mutPatterns)
-
-  if(dim(mutPatterns)[1]==1){
-    mutPatterns<-matrix(c(mutPatterns[,order(mutPatterns,decreasing=TRUE)]),
-                        1,ncol(mutPatterns),
-                        dimnames = list(rownames(mutPatterns),colnames(mutPatterns)))
-
-    return(mutPatterns)
-  }
-
-  if(dim(mutPatterns)[2]==1){
-    mutPatterns<-matrix(c(mutPatterns[order(mutPatterns,decreasing=TRUE),]),
-                        nrow(mutPatterns),1,
-                        dimnames = list(rownames(mutPatters),colnames(mutPatterns)))
-    return(mutPatterns)
-  }
 
   nsamples<-ncol(mutPatterns)
 
@@ -42,7 +27,7 @@ HeuristicMutExSorting<-function(mutPatterns){
                        dimnames = list(uncoveredGenes,uncoveredSamples))
 
       if(length(uncoveredGenes)>1){
-        bestInClass<-findBestInClass(patterns)
+        bestInClass<-MExMaS.findBestInClass(patterns)
       }else{
         bestInClass<-uncoveredGenes
       }
@@ -74,7 +59,7 @@ HeuristicMutExSorting<-function(mutPatterns){
 
     BS<-c(BS,uncoveredGenes)
 
-    CID<-rearrangeMatrix(mutPatterns,BS)
+    CID<-MExMaS.rearrangeMatrix(mutPatterns,BS)
 
     FINALMAT<-mutPatterns[BS,CID]
 
@@ -84,7 +69,7 @@ HeuristicMutExSorting<-function(mutPatterns){
   }
 
 }
-findBestInClass<-function(patterns){
+MExMaS.findBestInClass<-function(patterns){
 
   if(nrow(patterns)==1){
     return(rownames(patterns))
@@ -109,7 +94,7 @@ findBestInClass<-function(patterns){
 
   return(names(sort(exclCov,decreasing=TRUE))[1])
 }
-rearrangeMatrix<-function(patterns,GENES){
+MExMaS.rearrangeMatrix<-function(patterns,GENES){
 
   remainingSamples<-colnames(patterns)
 
