@@ -12,6 +12,8 @@ BinMat[sample(r*c,round(r*c*dens))]<-1
 sortedMat<-MExMaS.HeuristicMutExSorting(BinMat)
 
 #visualising original matrix
-pheatmap(BinMat,cluster_rows = FALSE,cluster_cols = FALSE,legend = FALSE,show_colnames = FALSE,show_rownames = FALSE)
+pheatmap(BinMat,cluster_rows = FALSE,cluster_cols = FALSE,legend = FALSE,show_colnames = FALSE,show_rownames = FALSE,main='Original Matrix',
+         col=c('white','blue'))
 #visualising original matrix
-pheatmap(sortedMat,cluster_rows = FALSE,cluster_cols = FALSE,legend = FALSE,show_colnames = FALSE,show_rownames = FALSE)
+pheatmap(sortedMat,cluster_rows = FALSE,cluster_cols = FALSE,legend = FALSE,show_colnames = FALSE,show_rownames = FALSE,main='Sorted Matrix',
+         col=c('white','blue'))
