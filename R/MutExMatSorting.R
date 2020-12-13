@@ -1,5 +1,5 @@
 MExMaS.HeuristicMutExSorting<-function(mutPatterns){
-
+##
   mutPatterns<-sign(mutPatterns)
 
   nsamples<-ncol(mutPatterns)
