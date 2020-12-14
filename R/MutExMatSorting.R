@@ -10,10 +10,13 @@ MExMaS.HeuristicMutExSorting<-function(mutPatterns){
   if (length(uncoveredGenes)>1){
 
     idNull<-which(colSums(mutPatterns)==0)
-    nullCol<-matrix(c(mutPatterns[,idNull]),nrow(mutPatterns),length(idNull),dimnames = list(rownames(mutPatterns),colnames(mutPatterns)[idNull]))
+    nullCol<-matrix(c(mutPatterns[,idNull]),nrow(mutPatterns),
+                    length(idNull),dimnames = list(rownames(mutPatterns),colnames(mutPatterns)[idNull]))
 
     idNonNull<-which(colSums(mutPatterns)>0)
-    mutPatterns<-matrix(c(mutPatterns[,idNonNull]),nrow(mutPatterns),length(idNonNull),dimnames=list(rownames(mutPatterns),colnames(mutPatterns)[idNonNull]))
+    mutPatterns<-matrix(c(mutPatterns[,idNonNull]),
+                        nrow(mutPatterns),length(idNonNull),
+                        dimnames=list(rownames(mutPatterns),colnames(mutPatterns)[idNonNull]))
 
     coveredSamples<-NA
     uncoveredSamples<-colnames(mutPatterns)
@@ -103,8 +106,11 @@ MExMaS.rearrangeMatrix<-function(patterns,GENES){
   for (g in GENES){
     remainingGenes<-setdiff(GENES,g)
 
-    P1<-matrix(c(patterns[g,remainingSamples]),length(g),length(remainingSamples),dimnames = list(g,remainingSamples))
-    P2<-matrix(c(patterns[remainingGenes,remainingSamples]),length(remainingGenes),length(remainingSamples),
+    P1<-matrix(c(patterns[g,remainingSamples]),length(g),length(remainingSamples),
+               dimnames = list(g,remainingSamples))
+
+    P2<-matrix(c(patterns[remainingGenes,remainingSamples]),
+               length(remainingGenes),length(remainingSamples),
                dimnames=list(remainingGenes,remainingSamples))
 
     if(length(remainingGenes)>1){
